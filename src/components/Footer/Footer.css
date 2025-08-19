@@ -1,0 +1,100 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px 104px 26px 104px;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.footer__title {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #b6bcbf;
+  margin: 0;
+}
+
+.footer__nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.footer__home-btn {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #b6bcbf;
+  transition: color 0.3s ease;
+}
+
+.footer__home-btn:hover {
+  color: #1a1b22;
+}
+
+.footer__tripleten-btn {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #b6bcbf;
+  transition: color 0.3s ease;
+}
+
+.footer__tripleten-btn:hover {
+  color: #1a1b22;
+}
+
+.footer__gh-logo {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.footer__gh-logo:hover {
+  opacity: 0.7;
+}
+
+.footer__fb-logo {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.footer__fb-logo:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 24px 40px 20px 40px;
+  }
+
+  .footer__nav {
+    gap: 24px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .footer {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 16px 16px 16px;
+    text-align: center;
+  }
+
+  .footer__nav {
+    gap: 20px;
+  }
+}

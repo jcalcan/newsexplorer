@@ -1,0 +1,22 @@
+.page {
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page__content {
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  flex: 1;
+}
+
+@media screen and (max-width: 375px) {
+  .page__content {
+    padding: 0 16px 0 16px;
+  }
+}
