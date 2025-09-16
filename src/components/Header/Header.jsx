@@ -1,6 +1,10 @@
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import "./Header.css";
 
-function Header() {
+function Header({ handleLoginClick, handleSignupClick, handleSearch }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   function handleClick(card) {
     /*
         setActiveModal("preview");
@@ -15,32 +19,52 @@ function Header() {
     */
   }
 
-  function handleSearch(e) {
-    e.preventDefault();
-    // Handle search functionality
-    console.log("Search clicked");
+  function handleMobileMenuToggle() {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  }
+
+  function handleMobileMenuClose() {
+    setIsMobileMenuOpen(false);
+  }
+
+  function handleMobileSignin() {
+    handleLoginClick();
+    handleMobileMenuClose();
   }
 
   return (
     <header className="header">
       <nav className="header__nav">
-        <div className="header__title">NewsExplorer</div>
+        <Link to="/">
+          <div className="header__title">NewsExplorer</div>
+        </Link>
         <div className="header__nav-buttons">
-          <button type="button" className="header__home-btn" onClick={handleClick}>
-            Home
-          </button>
+          <Link to="/">
+            <button type="button" className="header__home-btn">
+              Home
+            </button>
+          </Link>
           <button
             type="button"
             className="header__signin-btn"
-            onClick={handleSignin}
+            onClick={handleLoginClick}
           >
             Sign in
           </button>
+          <button
+            type="button"
+            className="header__menu-btn"
+            onClick={handleMobileMenuToggle}
+            aria-label="Open menu"
+          >
+          </button>
         </div>
       </nav>
-      
+
       <section className="header__main-headline">
-        <h1 className="header__main-headline__text">What's going on in the world?</h1>
+        <h1 className="header__main-headline__text">
+          What's going on in the world?
+        </h1>
         <p className="header__main-headline__subtitle">
           Find the latest news on any topic and save them in your personal
           account.
@@ -63,6 +87,36 @@ function Header() {
           </button>
         </form>
       </section>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`header__mobile-menu ${isMobileMenuOpen ? 'header__mobile-menu--open' : ''}`}>
+        <div className="header__mobile-menu-content">
+          <div className="header__mobile-menu-header">
+            <h2 className="header__mobile-menu-title">NewsExplorer</h2>
+            <button
+              type="button"
+              className="header__mobile-menu-close"
+              onClick={handleMobileMenuClose}
+              aria-label="Close menu"
+            >
+            </button>
+          </div>
+          <nav className="header__mobile-menu-nav">
+            <Link to="/" onClick={handleMobileMenuClose}>
+              <button type="button" className="header__mobile-menu-home">
+                Home
+              </button>
+            </Link>
+            <button
+              type="button"
+              className="header__mobile-menu-signin"
+              onClick={handleMobileSignin}
+            >
+              Sign in
+            </button>
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }

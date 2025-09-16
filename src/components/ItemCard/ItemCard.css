@@ -1,0 +1,195 @@
+.itemCard {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.itemCard:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.itemCard__image-container {
+  position: relative;
+  width: 100%;
+  height: 272px;
+  overflow: hidden;
+}
+
+.itemCard-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.itemCard-sigin-notice-btn {
+  visibility: hidden;
+  position: absolute;
+  display: block;
+  top: 24px;
+  right: 69px;
+  width: 182px;
+  height: 40px;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 100%;
+  cursor: pointer;
+  transition: visibility 0.3s ease;
+  z-index: 10;
+  
+}
+
+.itemCard-bookmark-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  background-image: url(../../assets/likebtn.svg);
+  background-size: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.itemCard-bookmark-btn:hover {
+  background-image: url(../../assets/likedbtn-hover.svg);
+}
+
+.itemCard__content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.itemCard-date {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #b6bcbf;
+  margin: 0;
+}
+
+.itemCard-title {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #1a1b22;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.itemCard-description {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #1a1b22;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.itemCard-source {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #b6bcbf;
+  margin: 0;
+  margin-top: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .itemCard__image-container {
+    height: 200px;
+  }
+
+  .itemCard__content {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .itemCard-title {
+    font-size: 20px;
+    line-height: 24px;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .itemCard-description {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  .itemCard-sigin-notice-btn {
+    width: 160px;
+    font-size: 11px;
+    right: 69px;
+    top: 24px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .itemCard__image-container {
+    height: 180px;
+  }
+
+  .itemCard__content {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .itemCard-title {
+    font-size: 18px;
+    line-height: 22px;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .itemCard-description {
+    font-size: 14px;
+    line-height: 20px;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  .itemCard-sigin-notice-btn {
+    width: 140px;
+    font-size: 10px;
+    right: 61px;
+    top: 20px;
+    height: 36px;
+  }
+
+  .itemCard-bookmark-btn {
+    width: 36px;
+    height: 36px;
+    top: 20px;
+    right: 20px;
+  }
+}
