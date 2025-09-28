@@ -16,6 +16,8 @@ function Main({ newsData }) {
   return (
     <main className="main">
       <section className="news-cards">
+      {newsData.articles && newsData.articles.length > 0 && (
+        <>
         <h2 className="news-cards__heading">Search results</h2>
         <ul className="news-cards__list">
           {cardsToShow.map((item) => {
@@ -30,7 +32,10 @@ function Main({ newsData }) {
             );
           })}
         </ul>
-        {newsData.articles.length > 3 && (
+        </>
+        )}
+         {newsData.articles.length > 3 && (
+          
           <button
             className="news-cards__show-more-btn"
             type="button"

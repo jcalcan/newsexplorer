@@ -38,7 +38,7 @@
 
 .news-cards__show-more-btn {
   display: block;
-  margin: 64px auto 0;
+  margin: 20px auto 20px;
   padding: 20px 98px;
   background-color: white;
   border: 1px solid #1a1b22;
@@ -67,8 +67,6 @@
 
 .about-author {
   display: flex;
-  max-width: 1440px;
-  margin: 0 auto;
   padding: 80px 104px;
   gap: 56px;
   align-items: center;
@@ -121,7 +119,7 @@
 
 @media screen and (max-width: 1024px) {
   .about-author {
-    padding: 0 40px;
+    /* padding: 0 40px; */
     gap: 40px;
   }
 
@@ -139,13 +137,15 @@
   .news-cards__heading {
     font-size: 30px;
     line-height: 34px;
-    margin: 60px 40px 32px;
+    margin: 0 16px 58px;
   }
 
   .news-cards__list {
-    grid-template-columns: repeat(2, 1fr);
-    margin: 64px 40px auto;
-    grid-gap: 8px;
+    padding: 0;
+    grid-template-columns: 1fr;
+    grid-gap: 16px;
+    padding-bottom: 20px;
+    margin: 0 16px;
   }
 
   .about-author {
@@ -177,13 +177,7 @@
     margin: 32px 16px 20px;
   }
 
-  .news-cards__list {
-    padding: 0;
-    grid-template-columns: 1fr;
-    grid-gap: 16px;
-    padding-bottom: 20px;
-    margin: 0 16px;
-  }
+ 
   .news-cards__text {
     width: 100%;
     margin: 32px 0 20px 0;
