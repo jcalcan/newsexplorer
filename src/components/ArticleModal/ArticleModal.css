@@ -1,0 +1,129 @@
+.article-modal {
+  max-width: 600px;
+  width: 90%;
+  padding: 0;
+  background-color: white;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  background-color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.article-modal__image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.article-modal__content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.article-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.article-modal__date {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 14px;
+  color: #b6bcbf;
+  margin: 0;
+}
+
+.article-modal__action-btn {
+  width: 40px;
+  height: 40px;
+  background-color: #f5f6f7;
+  border: none;
+  border-radius: 8px;
+  background-image: url(../../assets/likebtn.svg);
+  background-size: 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.article-modal__action-btn_type_liked {
+  background-image: url(../../assets/likedbtn-liked.svg);
+}
+
+.article-modal__action-btn_type_trash {
+  background-image: url(../../assets/trash.svg);
+}
+
+.article-modal__action-btn_type_trash:hover {
+  background-image: url(../../assets/trash-hover.svg);
+}
+
+.article-modal__title {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #1a1b22;
+  margin: 0;
+}
+
+.article-modal__text {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1a1b22;
+  margin: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.article-modal__link {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2f71e5;
+  text-decoration: none;
+  margin-top: 8px;
+}
+
+.article-modal__link:hover {
+  text-decoration: underline;
+}
+
+/* Base modal styles if not already defined globally */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.3s, opacity 0.3s linear;
+  z-index: 2000;
+}
+
+.modal_opened {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s linear;
+}
+
