@@ -7,7 +7,8 @@ export default function RegisterModal({
   onClose,
   isOpen,
   handleRegistration,
-  handleModalSwitch
+  handleModalSwitch,
+  handleRegistrationSuccessModal
 }) {
   const emailInputRef = useRef(null);
   const [data, setData] = useState({
@@ -38,7 +39,7 @@ export default function RegisterModal({
     if (!validators.password(formData.password))
       newErrors.password = "Password must be at least 6 characters";
     if (!validators.username(formData.username))
-      newErrors.name = "Name must be at least 4 characters";
+      newErrors.username = "Name must be at least 4 characters";
 
     setErrors(newErrors);
     setIsValid(
@@ -67,13 +68,16 @@ export default function RegisterModal({
     }
   }, [isOpen]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isValid) {
-      handleRegistration(data).catch((error) => {
-        setServerError(error);
-        setIsValid(false);
-      });
+    if (!isValid) return;
+
+    try {
+      await handleRegistration(data);
+      handleRegistrationSuccessModal();
+    } catch (error) {
+      setServerError(error);
+      setIsValid(false);
     }
   };
 

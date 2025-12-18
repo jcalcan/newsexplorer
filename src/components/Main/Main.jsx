@@ -61,13 +61,14 @@ function Main({
           <div className="about-author__content">
             <h2 className="about-author__title">About the author</h2>
             <p className="about-author__description">
-              This block describes the project author. Here you should indicate
-              your name, what you do, and which development technologies you
-              know.
+            Juan Alcantara is a dedicated software developer and cybersecurity professional based in Oak Creek, Wisconsin, 
+            transitioning from 14+ years in logistics and transportation to full-stack web development. He is a quick learner and a team player.
             </p>
             <p className="about-author__description">
-              You can also talk about your experience with TripleTen, what you
-              learned there, and how you can help potential customers.
+            Juan is pursuing a Bachelor's in Information Technology with a Cybersecurity focus at Arizona State University Online, 
+            expected to graduate in 2027, building on prior studies at Milwaukee School of Engineering. 
+            He completed the TripleTen Software Engineering Bootcamp, mastering the MERN stack, HTML/CSS, and Git for full-stack development.
+            He is currently seeking opportunities to apply his skills in a dynamic team environment.
             </p>
           </div>
         </section>

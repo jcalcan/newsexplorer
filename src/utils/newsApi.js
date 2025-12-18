@@ -15,7 +15,7 @@ export class NewsAPI {
   getNews(searchTerm) {
     // Construct the full URL with API key as query parameter
     const url = `${this._baseUrl}everything?q=${searchTerm}&sortBy=popularity&apiKey=${this._APIkey}`;
-    
+
     // Use CORS proxy for GitHub Pages
     const proxiedUrl = `${this._corsProxy}${url}`;
 
@@ -28,10 +28,5 @@ export class NewsAPI {
     }
     return Promise.reject(`Error: ${res.status}`);
   }
-
-  filterNewsData(data) {
-    const result = { data };
-
-    return result;
-  }
 }
+export const newsApi = new NewsAPI();

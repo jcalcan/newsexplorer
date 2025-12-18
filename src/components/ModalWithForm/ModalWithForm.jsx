@@ -9,6 +9,7 @@ function ModalWithForm({
   isOpen,
   onClose,
   onSubmit,
+  submitButton = true,
   alternativeAction,
   isValid
 }) {
@@ -23,14 +24,16 @@ function ModalWithForm({
 
           {children}
           <div className="modal__button-container">
-            <button
-              type="submit"
-              className="modal__submit-btn"
-              disabled={!isValid}
-              style={buttonWidthStyle}
-            >
-              {buttonText}
-            </button>
+            {submitButton && (
+              <button
+                type="submit"
+                className="modal__submit-btn"
+                disabled={!isValid}
+                style={buttonWidthStyle}
+              >
+                {buttonText}
+              </button>
+            )}
             {alternativeAction}
           </div>
         </form>

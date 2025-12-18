@@ -3,7 +3,7 @@
 }
 
 .articles-items-menu {
-  display: none; /* hide "Your Items" label on /saved-news if you want */
+  display: none; 
 }
 
 .articles-section__list {

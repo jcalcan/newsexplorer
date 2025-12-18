@@ -37,6 +37,11 @@ function ItemCard({
     onCardClick(item);
   };
 
+  const cleanText = (text) => {
+    if (!text) return "";
+    return text.replace(/<[^>]*>?/gm, "").replace(/\s*\[\+\d+\s+chars\]/gi, "");
+  };
+
   return (
     <li className="itemCard" onClick={handleCardClick}>
       <div className="itemCard__image-container">
@@ -73,7 +78,7 @@ function ItemCard({
           })}
         </p>
         <h2 className="itemCard-title">{item.title}</h2>
-        <p className="itemCard-description">{item.description}</p>
+        <p className="itemCard-description">{cleanText(item.description)}</p>
         <p className="itemCard-source">{item.source?.name || item.source}</p>
       </div>
     </li>

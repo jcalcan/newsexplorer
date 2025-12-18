@@ -7,6 +7,15 @@ function ArticleModal({ isOpen, article, onClose, handleArticleLike }) {
 
   if (!article) return null;
 
+  const cleanText = (text) => {
+    if (!text) return "";
+    // Remove HTML tags
+    let cleaned = text.replace(/<[^>]*>?/gm, "");
+    // Remove the [+XXXX chars] suffix found in NewsAPI content
+    cleaned = cleaned.replace(/\s*\[\+\d+\s+chars\]/gi, "");
+    return cleaned;
+  };
+
   const handleLike = (e) => {
     e.stopPropagation();
     handleArticleLike({
@@ -14,17 +23,16 @@ function ArticleModal({ isOpen, article, onClose, handleArticleLike }) {
       isLiked: isSavedNews || article.isLiked || false,
       article: article,
     });
-    // Optional: close modal on like/delete if desired, 
-    // but user didn't specify, so we keep it open for now
   };
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__container article-modal">
         <button
-          className="modal__close article-modal__close"
+          className="article-modal__close"
           type="button"
           onClick={onClose}
+          aria-label="Close"
         />
         <img
           className="article-modal__image"
@@ -46,11 +54,12 @@ function ArticleModal({ isOpen, article, onClose, handleArticleLike }) {
                 isSavedNews ? "article-modal__action-btn_type_trash" : ""
               } ${article.isLiked ? "article-modal__action-btn_type_liked" : ""}`}
               onClick={handleLike}
+              title={isSavedNews ? "Remove" : "Save"}
             />
           </div>
           <h2 className="article-modal__title">{article.title}</h2>
           <p className="article-modal__text">
-            {article.content || article.description}
+            {cleanText(article.content || article.description)}
           </p>
           <a
             href={article.url}

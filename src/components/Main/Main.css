@@ -81,7 +81,7 @@
   height: 464px;
   border-radius: 50%;
   background-image: url("../../assets/author_photo.jpg");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
