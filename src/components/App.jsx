@@ -206,7 +206,7 @@ function App() {
   }
 
   function handleRegistration({ email, password, username, avatar }) {
-    console.log("Registration attempt:", { username, email, password, avatar });
+    //console.log("Registration attempt:", { username, email, password, avatar });
 
     return usersApi
       .createUser({

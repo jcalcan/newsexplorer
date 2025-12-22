@@ -21,27 +21,28 @@ export class UsersApi {
     return fetch(endpoint, finalOptions).then(this._checkResponse);
   }
 
-  getItems() {
-    return this._request(`${this._baseUrl}items`, { method: "GET" }).then(
-      (response) => {
-        return response.data;
-      }
-    );
-  }
+  //for future use
+  // getItems() {
+  //   return this._request(`${this._baseUrl}items`, { method: "GET" }).then(
+  //     (response) => {
+  //       return response.data;
+  //     }
+  //   );
+  // }
 
-  postItems(data, token) {
-    return this._request(`${this._baseUrl}items`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify(data)
-    }).then((response) => {
-      return response;
-    });
-  }
+  // postItems(data, token) {
+  //   return this._request(`${this._baseUrl}items`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       Authorization: `Bearer ${token}`
+  //     },
+  //     body: JSON.stringify(data)
+  //   }).then((response) => {
+  //     return response;
+  //   });
+  // }
 
   deleteItem(id, token) {
     return this._request(`${this._baseUrl}items/${id}`, {
@@ -94,7 +95,7 @@ export class UsersApi {
   }
 
   authorize(data) {
-    console.log("Making request to:", `${this._baseUrl}signin`);
+    // console.log("Making request to:", `${this._baseUrl}signin`);
     return this._request(`${this._baseUrl}signin`, {
       method: "POST",
       headers: {
