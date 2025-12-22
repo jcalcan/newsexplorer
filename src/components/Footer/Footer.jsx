@@ -19,7 +19,11 @@ function Footer() {
         >
           TripleTen
         </a>
-        <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://github.com/jcalcan"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Gh_logo className="footer__gh-logo" alt="Github" />
         </a>
         <a
