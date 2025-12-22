@@ -1,6 +1,6 @@
 export class NewsAPI {
   constructor() {
-    this._APIkey = "7006cbb31d7d47c1a3e8805ea9368cfa";
+    this._APIkey = import.meta.env.VITE_NEWS_API_KEY;
     this._baseUrl = `https://newsapi.org/v2/`;
     this._corsProxy = `https://corsproxy.io/?url=`;
   }

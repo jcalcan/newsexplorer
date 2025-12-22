@@ -2,7 +2,7 @@ export class UsersApi {
   constructor() {
     this._baseUrl =
       process.env.NODE_ENV === "production"
-        ? "" //TODO update URL
+        ? "https://api.newsexplorer.mine.bz/"
         : "http://localhost:3001/";
     this._headers = {
       "Content-Type": "application/json"

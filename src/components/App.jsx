@@ -49,12 +49,6 @@ function App() {
   const [latestSearchTerm, setLatestSearchTerm] = useState("");
   const [selectedArticle, setSelectedArticle] = useState(null);
 
-  console.log("=== ROUTE DEBUG ===");
-  console.log("isLoggedIn:", isLoggedIn);
-  console.log("isLoading:", isLoading);
-  console.log("token:", !!token);
-  console.log("savedArticles:", savedArticles.length);
-
   useEffect(() => {
     const jwt = getToken();
 
@@ -138,7 +132,7 @@ function App() {
     setErrorMessage("");
   }
   function handleLogin({ email, password }) {
-    console.log("Login data being sent:", { email, password });
+    
     if (!email || !password) {
       return;
     }
@@ -147,7 +141,7 @@ function App() {
     return usersApi
       .authorize({ email, password })
       .then((authData) => {
-        console.log("authorize response:", authData);
+        
         if (!authData.data.token) {
           throw new Error("No token received");
         }
@@ -159,7 +153,7 @@ function App() {
         return usersApi.getUserInfo(jwt); // Return promise for chaining
       })
       .then((userData) => {
-        console.log("getUserInfo response:", userData);
+        
 
         setCurrentUser({
           email: userData.data.email,
@@ -174,7 +168,7 @@ function App() {
         navigate(redirectPath);
       })
       .catch((err) => {
-        console.error("Login error:", err);
+       
         setErrorMessage("Invalid email or password");
       });
   }

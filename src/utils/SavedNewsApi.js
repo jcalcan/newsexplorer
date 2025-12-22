@@ -1,6 +1,6 @@
 class SavedNewsApi {
   constructor() {
-    this._baseUrl = "http://localhost:3001"; // Your backend
+    this._baseUrl = "http://localhost:3001"; // backend
   }
 
   getSavedNews(token) {
