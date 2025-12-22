@@ -1,0 +1,28 @@
+.articles-section {
+  margin-top: 32px;
+}
+
+.articles-items-menu {
+  display: none; 
+}
+
+.articles-section__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 16px;
+}
+
+@media screen and (max-width: 1024px) {
+  .articles-section__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .articles-section__list {
+    grid-template-columns: 1fr;
+  }
+}

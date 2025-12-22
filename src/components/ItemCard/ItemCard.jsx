@@ -1,56 +1,73 @@
 import { useContext, useState } from "react";
+import { useLocation } from "react-router-dom";
 import AppContext from "../../contexts/Appcontexts";
 import "./ItemCard.css";
 
-function ItemCard({ item /*onCardClick, handleCardLike*/ }) {
+function ItemCard({
+  item,
+  handleArticleLike,
+  handleLoginClick,
+  onCardClick
+}) {
   const { isLoggedIn, currentUser } = useContext(AppContext);
-  const [showSignInNotice, setShowSignInNotice] = useState(false);
+  const [showNotice, setShowNotice] = useState(false);
+  const location = useLocation();
+  const isSavedNews = location.pathname === "/saved-news";
 
+  function handleLike(e) {
+    e.stopPropagation();
+    handleArticleLike({
+      id: isSavedNews ? item._id : item.url,
+      isLiked: isSavedNews || item.isLiked || false,
+      article: item
+    });
+  }
 
-  //   function handleLike() {
-  //     handleCardLike({
-  //       id: item._id,
-  //       isLiked: item.likes.some((id) => id === currentUser._id)
-  //     });
-  //   }
-
-  //   function handleImageClick() {
-  //     onCardClick(item);
-  //   }
-
-  const handleBookmarkMouseEnter = () => {
-    if (!isLoggedIn) {
-      setShowSignInNotice(true);
+  const handleMouseEnter = () => {
+    if (!isLoggedIn || isSavedNews) {
+      setShowNotice(true);
     }
   };
 
-  const handleBookmarkMouseLeave = () => {
-    setShowSignInNotice(false);
+  const handleMouseLeave = () => {
+    setShowNotice(false);
+  };
+
+  const handleCardClick = () => {
+    onCardClick(item);
+  };
+
+  const cleanText = (text) => {
+    if (!text) return "";
+    return text.replace(/<[^>]*>?/gm, "").replace(/\s*\[\+\d+\s+chars\]/gi, "");
   };
 
   return (
-    <li className="itemCard">
+    <li className="itemCard" onClick={handleCardClick}>
       <div className="itemCard__image-container">
         <img
           className="itemCard-img"
-          src={item.urlToImage}
-          alt={item.description}
+          src={item.urlToImage || item.image}
+          alt={item.title}
         />
-        {!isLoggedIn && (
-          <button
-            type="button"
-            className="itemCard-sigin-notice-btn"
-            style={{ visibility: showSignInNotice ? "visible" : "hidden" }}
-          >
-            Sign in to save articles
-          </button>
+
+        {isSavedNews && <div className="itemCard__keyword">{item.keyword}</div>}
+
+        {showNotice && (
+          <div className="itemCard__notice">
+            {isSavedNews ? "Remove from saved" : "Sign in to save articles"}
+          </div>
         )}
+
         <button
           type="button"
-          className="itemCard-bookmark-btn"
-          onMouseEnter={handleBookmarkMouseEnter}
-          onMouseLeave={handleBookmarkMouseLeave}
-        ></button>
+          className={`itemCard__action-btn ${
+            isSavedNews ? "itemCard__action-btn_type_trash" : ""
+          } ${item.isLiked ? "itemCard__action-btn_type_liked" : ""}`}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleLike}
+        />
       </div>
       <div className="itemCard__content">
         <p className="itemCard-date">
@@ -61,8 +78,8 @@ function ItemCard({ item /*onCardClick, handleCardLike*/ }) {
           })}
         </p>
         <h2 className="itemCard-title">{item.title}</h2>
-        <p className="itemCard-description">{item.description}</p>
-        <p className="itemCard-source">{item.source.name}</p>
+        <p className="itemCard-description">{cleanText(item.description)}</p>
+        <p className="itemCard-source">{item.source?.name || item.source}</p>
       </div>
     </li>
   );

@@ -1,7 +1,8 @@
 export class NewsAPI {
   constructor() {
-    this._APIkey = "7006cbb31d7d47c1a3e8805ea9368cfa";
+    this._APIkey = import.meta.env.VITE_NEWS_API_KEY;
     this._baseUrl = `https://newsapi.org/v2/`;
+    this._corsProxy = `https://corsproxy.io/?url=`;
   }
   _request(endpoint, options = {}) {
     const finalOptions = {
@@ -15,7 +16,10 @@ export class NewsAPI {
     // Construct the full URL with API key as query parameter
     const url = `${this._baseUrl}everything?q=${searchTerm}&sortBy=popularity&apiKey=${this._APIkey}`;
 
-    return this._request(url, { method: "GET" });
+    // Use CORS proxy for GitHub Pages
+    const proxiedUrl = `${this._corsProxy}${url}`;
+
+    return this._request(proxiedUrl, { method: "GET" });
   }
 
   _checkResponse(res) {
@@ -24,10 +28,5 @@ export class NewsAPI {
     }
     return Promise.reject(`Error: ${res.status}`);
   }
-
-  filterNewsData(data) {
-    const result = { data };
-
-    return result;
-  }
 }
+export const newsApi = new NewsAPI();

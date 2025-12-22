@@ -32,7 +32,7 @@ This separation keeps the application organized, scalable, and maintainable.
 Newsexplorer is a site that provides results based on news articles searched. The site is designed to function on any browser- mobile or desktop. No need to install special extensions. Plans to improve the project includes user database management, archiving news feature, adding location services to determine user location for local news.
 
 **Github link**
-[live site] https://jcalcan.github.io/newsexplorer/
+[live site] https://www.newsexplorer.mine.bz
 [updated project with back-end]
 
 Good luck and have fun!

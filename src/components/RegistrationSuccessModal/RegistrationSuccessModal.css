@@ -1,0 +1,13 @@
+.success-modal__alternateAction-link {
+  background: none;
+  border: none;
+  margin: 20px 43px 15px -85px;
+  width: 228px;
+  padding: 0;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: Inter, sans-serif;
+  line-height: 100%;
+  color: #2f71e5;
+}

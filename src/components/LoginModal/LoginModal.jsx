@@ -12,7 +12,8 @@ export default function LoginModal({
   const emailInputRef = useRef(null);
   const [currentUser, setCurrentUser] = useState({
     email: "",
-    password: ""
+    password: "",
+    username: ""
   });
 
   const [emailError, setEmailError] = useState(false);
