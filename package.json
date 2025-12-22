@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://jcalcan.github.io/newsexplorer",
+  "homepage": "https://newsexplorer.mine.bz",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
