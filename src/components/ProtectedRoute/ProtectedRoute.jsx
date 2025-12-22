@@ -8,12 +8,12 @@ function ProtectedRoute({ children, anonymous = false }) {
   const from = location.state?.from || "/";
 
   const { isLoggedIn, isLoading } = useContext(AppContext);
-  console.log(
-    "ProtectedRoute isLoggedIn:",
-    isLoggedIn,
-    "path:",
-    location.pathname
-  );
+  // console.log(
+  //   "ProtectedRoute isLoggedIn:",
+  //   isLoggedIn,
+  //   "path:",
+  //   location.pathname
+  // );
 
   if (isLoading) {
     return <div>Loading...</div>; // Or spinner

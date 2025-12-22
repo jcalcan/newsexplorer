@@ -1,6 +1,6 @@
 class SavedNewsApi {
   constructor() {
-    const baseUrl = process.env.NODE_ENV === "production" 
+    this._baseUrl = process.env.NODE_ENV === "production" 
   ? "https://api.newsexplorer.mine.bz"
   : "http://localhost:3001";
   }

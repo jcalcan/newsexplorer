@@ -113,7 +113,7 @@ function App() {
     newsApi
       .getNews(searchTerm)
       .then((data) => {
-        console.log("Search results:", data);
+        // console.log("Search results:", data);
         const articlesWithKeyword = data.articles.map((article) => ({
           ...article,
           keyword: searchTerm

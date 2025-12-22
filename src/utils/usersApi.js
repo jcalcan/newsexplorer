@@ -84,7 +84,7 @@ export class UsersApi {
   }
 
   getUserInfo(token) {
-    console.log("getUserInfo token: ", token);
+    //console.log("getUserInfo token: ", token);
     return this._request(`${this._baseUrl}me`, {
       method: "GET",
       headers: {
