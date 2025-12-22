@@ -84,7 +84,7 @@ function App() {
       savedNewsApi
         .getSavedNews(token)
         .then((data) => {
-          console.log("Loaded saved articles:", data);
+          // console.log("Loaded saved articles:", data);
           setSavedArticles(data.data || data || []);
         })
         .catch((err) => {
