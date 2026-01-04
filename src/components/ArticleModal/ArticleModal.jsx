@@ -1,5 +1,5 @@
-import "./ArticleModal.css";
 import { useLocation } from "react-router-dom";
+import "./ArticleModal.css";
 
 function ArticleModal({ isOpen, article, onClose, handleArticleLike }) {
   const location = useLocation();
@@ -21,7 +21,7 @@ function ArticleModal({ isOpen, article, onClose, handleArticleLike }) {
     handleArticleLike({
       id: isSavedNews ? article._id : article.url,
       isLiked: isSavedNews || article.isLiked || false,
-      article: article,
+      article,
     });
   };
 
@@ -52,7 +52,9 @@ function ArticleModal({ isOpen, article, onClose, handleArticleLike }) {
               type="button"
               className={`article-modal__action-btn ${
                 isSavedNews ? "article-modal__action-btn_type_trash" : ""
-              } ${article.isLiked ? "article-modal__action-btn_type_liked" : ""}`}
+              } ${
+                article.isLiked ? "article-modal__action-btn_type_liked" : ""
+              }`}
               onClick={handleLike}
               title={isSavedNews ? "Remove" : "Save"}
             />
@@ -76,4 +78,3 @@ function ArticleModal({ isOpen, article, onClose, handleArticleLike }) {
 }
 
 export default ArticleModal;
-
