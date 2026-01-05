@@ -1,12 +1,12 @@
 .page {
   background-color: white;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .page__content {
   display: flex;
+  flex: 1;
   flex-direction: column;
   max-width: 1440px;
   width: 100%;

@@ -4,9 +4,10 @@ export class NewsAPI {
     this._baseUrl = `https://newsapi.org/v2/`;
     this._corsProxy = `https://corsproxy.io/?url=`;
   }
+
   _request(endpoint, options = {}) {
     const finalOptions = {
-      ...options
+      ...options,
     };
 
     return fetch(endpoint, finalOptions).then(this._checkResponse);
@@ -26,7 +27,7 @@ export class NewsAPI {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Error: ${res.status}`);
+    return Promise.reject(new Error(`Error: ${res.status}`));
   }
 }
 export const newsApi = new NewsAPI();

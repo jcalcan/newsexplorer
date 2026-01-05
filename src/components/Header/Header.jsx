@@ -8,7 +8,7 @@ function Header({
   handleSearch,
   isLoggedIn,
   currentUser,
-  onLogout
+  onLogout,
 }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,11 +41,9 @@ function Header({
 
   return (
     <header
-      className={
-        "header " +
-        (isHome ? "header_home " : "") +
-        (isSavedNews ? "header_saved" : "")
-      }
+      className={`header ${isHome ? "header_home " : ""}${
+        isSavedNews ? "header_saved" : ""
+      }`}
     >
       {/* Top bar */}
       <nav className="header__nav">
@@ -59,8 +57,9 @@ function Header({
             <NavLink
               to="/"
               className={({ isActive }) =>
-                "header__nav-link" +
-                (isActive && !isSavedNews ? " header__nav-link_active" : "")
+                `header__nav-link${
+                  isActive && !isSavedNews ? " header__nav-link_active" : ""
+                }`
               }
             >
               Home
@@ -70,8 +69,9 @@ function Header({
               <NavLink
                 to="/saved-news"
                 className={({ isActive }) =>
-                  "header__nav-link" +
-                  (isActive && isSavedNews ? " header__nav-link_active" : "")
+                  `header__nav-link${
+                    isActive && isSavedNews ? " header__nav-link_active" : ""
+                  }`
                 }
               >
                 Saved articles

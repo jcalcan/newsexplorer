@@ -1,27 +1,28 @@
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-import Main from "../components/Main/Main";
-import { useState, useEffect, Profiler } from "react";
+import { useState, useEffect } from "react";
 import {
   useNavigate,
   useLocation,
   Route,
   Routes,
-  Navigate
+  Navigate,
 } from "react-router-dom";
+
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
+import Main from "./Main/Main";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
-import "./App.css";
 import Profile from "./Profile/Profile";
-import LoginModal from "../components/LoginModal/LoginModal";
-import RegisterModal from "../components/RegisterModal/RegisterModal";
-import RegistrationSuccessModal from "../components/RegistrationSuccessModal/RegistrationSuccessModal";
-import ArticleModal from "../components/ArticleModal/ArticleModal";
+import LoginModal from "./LoginModal/LoginModal";
+import RegisterModal from "./RegisterModal/RegisterModal";
+import RegistrationSuccessModal from "./RegistrationSuccessModal/RegistrationSuccessModal";
+import ArticleModal from "./ArticleModal/ArticleModal";
+import "./App.css";
 
 import AppContext from "../contexts/Appcontexts";
 import {
   getToken,
   setToken as saveTokenToStorage,
-  removeToken
+  removeToken,
 } from "../utils/token";
 import { NewsAPI } from "../utils/newsApi";
 import { UsersApi } from "../utils/usersApi";
@@ -42,7 +43,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({
     email: "",
     username: "",
-    _id: ""
+    _id: "",
   });
   const [token, setToken] = useState(null);
   const [savedArticles, setSavedArticles] = useState([]);
@@ -65,12 +66,12 @@ function App() {
         setCurrentUser({
           email: data.data.email,
           username: data.data.username,
-          _id: data.data._id
+          _id: data.data._id,
         });
       })
       .catch((err) => {
-        console.error(err);
-        //clear bad token here
+        // console.error(err);
+        // clear bad token here
         removeToken();
         setIsLoggedIn(false);
       })
@@ -88,7 +89,7 @@ function App() {
           setSavedArticles(data.data || data || []);
         })
         .catch((err) => {
-          console.error("Failed to load saved articles:", err);
+          // console.error("Failed to load saved articles:", err);
           setSavedArticles([]);
         });
     } else {
@@ -105,7 +106,7 @@ function App() {
       .value.trim();
 
     if (!searchTerm) {
-      console.log("Please enter a search term");
+      // console.log("Please enter a search term");
       return;
     }
 
@@ -116,13 +117,13 @@ function App() {
         // console.log("Search results:", data);
         const articlesWithKeyword = data.articles.map((article) => ({
           ...article,
-          keyword: searchTerm
+          keyword: searchTerm,
         }));
         setNewsData({ ...data, articles: articlesWithKeyword });
         setLatestSearchTerm(searchTerm);
       })
       .catch((error) => {
-        console.error("Search error:", error);
+        // console.error("Search error:", error);
         setErrorMessage("Failed to fetch news articles. Please try again.");
       });
   }
@@ -132,7 +133,6 @@ function App() {
     setErrorMessage("");
   }
   function handleLogin({ email, password }) {
-    
     if (!email || !password) {
       return;
     }
@@ -141,7 +141,6 @@ function App() {
     return usersApi
       .authorize({ email, password })
       .then((authData) => {
-        
         if (!authData.data.token) {
           throw new Error("No token received");
         }
@@ -153,12 +152,10 @@ function App() {
         return usersApi.getUserInfo(jwt); // Return promise for chaining
       })
       .then((userData) => {
-        
-
         setCurrentUser({
           email: userData.data.email,
           username: userData.data.username,
-          _id: userData.data._id
+          _id: userData.data._id,
         });
 
         setIsLoggedIn(true);
@@ -168,7 +165,6 @@ function App() {
         navigate(redirectPath);
       })
       .catch((err) => {
-       
         setErrorMessage("Invalid email or password");
       });
   }
@@ -206,18 +202,16 @@ function App() {
   }
 
   function handleRegistration({ email, password, username, avatar }) {
-    //console.log("Registration attempt:", { username, email, password, avatar });
+    // console.log("Registration attempt:", { username, email, password, avatar });
 
     return usersApi
       .createUser({
         email,
         password,
         username,
-        avatar
+        avatar,
       })
-      .then(() => {
-        return usersApi.authorize({ email, password });
-      })
+      .then(() => usersApi.authorize({ email, password }))
       .then((data) => {
         if (!data?.data?.token) {
           throw new Error("Authorization failed: no token");
@@ -226,24 +220,24 @@ function App() {
         return usersApi.getUserInfo(data.data.token);
       })
       .then((userinfo) => {
-        console.log("userinfo: ", userinfo);
+        // console.log("userinfo: ", userinfo);
         setCurrentUser({
           username: userinfo.username || "",
           email: userinfo.email || "",
           avatar: userinfo.avatar || null,
-          _id: userinfo._id
+          _id: userinfo._id,
         });
         setIsLoggedIn(true);
         closeActiveModal();
         navigate("/saved-news");
       })
       .catch((error) => {
-        console.log(
-          "Registration error object:",
-          error,
-          "message:",
-          error.message
-        );
+        // console.log(
+        //   "Registration error object:",
+        //   error,
+        //   "message:",
+        //   error.message
+        // );
         throw (
           error.message ||
           "An error occurred during registration. Please try again."
@@ -264,12 +258,12 @@ function App() {
         keyword: article.keyword || article.source?.name || "News",
         title: article.title,
         description:
-          article.description || article.content?.slice(0, 200) + "...",
+          article.description || `${article.content?.slice(0, 200)}...`,
         url: article.url,
         urlToImage: article.urlToImage || article.image,
         publishedAt: article.publishedAt || new Date().toISOString(),
         source: article.source?.name || "Unknown",
-        content: article.content || ""
+        content: article.content || "",
       };
 
       savedNewsApi
@@ -282,14 +276,15 @@ function App() {
               art.url === article.url
                 ? { ...art, _id: savedArticle._id, isLiked: true }
                 : art
-            )
+            ),
           }));
           // Also update savedArticles
           setSavedArticles((prev) => [savedArticle, ...prev]);
         })
-        .catch((err) => console.error("Save error:", err));
+        .catch((err) => {
+          throw new Error(`Save error: ${err?.message || "Unknown error"}`);
+        });
     } else {
-      // Remove works fine
       savedNewsApi
         .removeNewsArticle(id, token)
         .then((updatedArticle) => {
@@ -297,7 +292,7 @@ function App() {
             ...prev,
             articles: prev.articles.map((art) =>
               art._id === id ? { ...art, isLiked: false } : art
-            )
+            ),
           }));
           setSavedArticles((prev) => prev.filter((art) => art._id !== id));
         })
@@ -314,7 +309,7 @@ function App() {
         currentUser,
         setCurrentUser,
         token,
-        setToken
+        setToken,
       }}
     >
       <div className="page">

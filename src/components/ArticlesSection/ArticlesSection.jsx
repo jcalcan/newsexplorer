@@ -5,16 +5,14 @@ function ArticlesSection({ newsData, handleArticleLike, handleArticleClick }) {
   return (
     <div className="articles-section">
       <ul className="articles-section__list">
-        {newsData.map((item) => {
-          return (
+        {newsData.map((item) => (
             <ItemCard
               key={item._id || item.url}
               item={item}
               handleArticleLike={handleArticleLike}
               onCardClick={handleArticleClick}
             />
-          );
-        })}
+          ))}
       </ul>
     </div>
   );

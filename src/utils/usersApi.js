@@ -21,7 +21,7 @@ export class UsersApi {
     return fetch(endpoint, finalOptions).then(this._checkResponse);
   }
 
-  //for future use
+  // for future use
   // getItems() {
   //   return this._request(`${this._baseUrl}items`, { method: "GET" }).then(
   //     (response) => {
@@ -84,7 +84,7 @@ export class UsersApi {
   }
 
   getUserInfo(token) {
-    //console.log("getUserInfo token: ", token);
+    // console.log("getUserInfo token: ", token);
     return this._request(`${this._baseUrl}me`, {
       method: "GET",
       headers: {
@@ -105,6 +105,7 @@ export class UsersApi {
       body: JSON.stringify(data)
     });
   }
+
   updateUserInfo(data, token) {
     return this._request(`${this._baseUrl}me`, {
       method: "PATCH",

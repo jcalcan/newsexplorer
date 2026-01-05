@@ -1,5 +1,5 @@
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect, useRef } from "react";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
 
 export default function LoginModal({
@@ -7,27 +7,22 @@ export default function LoginModal({
   isOpen,
   handleLogin,
   handleModalSwitch,
-  errorMessage
+  errorMessage,
 }) {
   const emailInputRef = useRef(null);
   const [currentUser, setCurrentUser] = useState({
     email: "",
     password: "",
-    username: ""
+    username: "",
   });
 
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCurrentUser((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
-    setTimeout(validateForm, 0);
-  };
+  const isValidEmail = (email) => email.includes("@") && email.includes(".");
+
+  const isValidPassword = (password) => password.length >= 6;
 
   const validateForm = () => {
     let formIsValid = true;
@@ -49,12 +44,13 @@ export default function LoginModal({
     setIsValid(formIsValid);
   };
 
-  const isValidEmail = (email) => {
-    return email.includes("@") && email.includes(".");
-  };
-
-  const isValidPassword = (password) => {
-    return password.length >= 6;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCurrentUser((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    setTimeout(validateForm, 0);
   };
 
   const handleSubmit = (e) => {
@@ -70,7 +66,7 @@ export default function LoginModal({
       emailInputRef.current?.focus();
       setCurrentUser({
         email: "",
-        password: ""
+        password: "",
       });
       setEmailError(false);
       setPasswordError(false);

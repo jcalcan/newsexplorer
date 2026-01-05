@@ -1,6 +1,5 @@
 .main {
   background-color: white;
-
   padding: 0;
 }
 
@@ -102,6 +101,7 @@
   line-height: 46px;
   color: #1a1b22;
   margin: 0 0 24px 0;
+  text-align: left;
 }
 
 .about-author__description {
@@ -111,6 +111,7 @@
   line-height: 24px;
   color: #1a1b22;
   margin: 0 0 24px 0;
+  text-align: left;
 }
 
 .about-author__description:last-child {
@@ -119,7 +120,7 @@
 
 @media screen and (max-width: 1024px) {
   .news-cards__list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .about-author {
@@ -133,29 +134,29 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-  .main {
-    padding: 60px 0;
-  }
+@media screen and (max-width: 769px) {
+  /* .main {
+    padding: 60px 0 0;
+  } */
 
   .news-cards__heading {
     font-size: 30px;
     line-height: 34px;
-    margin: 0 16px 58px;
+    margin: 40px 40px 32px !important;
   }
 
   .news-cards__list {
     padding: 0;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 16px;
     padding-bottom: 20px;
-    margin: 0 16px;
+    margin: 0 40px;
   }
 
   .about-author {
     flex-direction: column;
     text-align: center;
-    padding: 0 40px;
+    padding: 32px 40px;
     gap: 32px;
   }
 
@@ -168,6 +169,23 @@
     font-size: 30px;
     line-height: 34px;
   }
+  .news-cards__show-more-btn {
+    margin: 32px 256px 40px 272px;
+    padding: 16px 52px 16px 53px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .news-cards__heading {
+    margin: 36px 24px 40px;
+  }
+  .news-cards__list {
+    grid-template-columns: 1fr;
+  }
+  .news-cards__show-more-btn {
+    margin: 0 auto 24px;
+    padding: 16px 60px;
+    font-size: 14px;
+  }
 }
 
 @media screen and (max-width: 375px) {
@@ -178,25 +196,21 @@
   .news-cards__heading {
     font-size: 30px;
     line-height: 34px;
-    margin: 32px 16px 20px;
+    margin: 32px 16px 58px;
   }
 
- 
   .news-cards__text {
     width: 100%;
     margin: 32px 0 20px 0;
     padding: 0;
     white-space: nowrap;
   }
-
-  .news-cards__show-more-btn {
-    margin: 32px auto 0;
-    padding: 16px 74px;
-    font-size: 16px;
+  .news-cards__list {
+    grid-template-columns: 1fr;
   }
 
   .about-author {
-    padding: 0 16px;
+    padding: 32px 16px;
     gap: 24px;
   }
 

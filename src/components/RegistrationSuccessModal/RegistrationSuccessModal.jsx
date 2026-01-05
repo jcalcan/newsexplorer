@@ -1,22 +1,21 @@
+import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState, useEffect, useRef } from "react";
 
 import "./RegistrationSuccessModal.css";
 
 export default function RegistrationSuccessModal({
   onClose,
   isOpen,
-  handleLoginClick
+  handleLoginClick,
 }) {
   const [isValid, setIsValid] = useState(false);
 
   return (
     <ModalWithForm
       title="Registration successfully completed!"
-      
       isOpen={isOpen}
       onClose={onClose}
-      //onSubmit={handleSubmit}
+      // onSubmit={handleSubmit}
       submitButton={false}
       alternativeAction={
         <button
