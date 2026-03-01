@@ -1,9 +1,11 @@
 export class NewsAPI {
   constructor() {
-    this._APIkey = import.meta.env.VITE_NEWS_API_KEY;
-    this._baseUrl = `https://newsapi.org/v2/`;
-    this._corsProxy = `https://corsproxy.io/?url=`;
+    this._baseUrl =
+      process.env.NODE_ENV === "production"
+        ? "https://api.newsexplorer.mine.bz"
+        : "http://localhost:3001";
   }
+
   _request(endpoint, options = {}) {
     const finalOptions = {
       ...options,
@@ -13,13 +15,8 @@ export class NewsAPI {
   }
 
   getNews(searchTerm) {
-    // Construct the full URL with API key as query parameter
-    const url = `${this._baseUrl}everything?q=${searchTerm}&sortBy=popularity&apiKey=${this._APIkey}`;
-
-    // Use CORS proxy for GitHub Pages
-    const proxiedUrl = `${this._corsProxy}${encodeURIComponent(url)}`;
-
-    return this._request(proxiedUrl, { method: "GET" });
+    const url = `${this._baseUrl}/news?q=${encodeURIComponent(searchTerm)}`;
+    return this._request(url, { method: "GET" });
   }
 
   _checkResponse(res) {
