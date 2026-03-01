@@ -6,7 +6,7 @@ export class NewsAPI {
   }
   _request(endpoint, options = {}) {
     const finalOptions = {
-      ...options
+      ...options,
     };
 
     return fetch(endpoint, finalOptions).then(this._checkResponse);
@@ -17,7 +17,7 @@ export class NewsAPI {
     const url = `${this._baseUrl}everything?q=${searchTerm}&sortBy=popularity&apiKey=${this._APIkey}`;
 
     // Use CORS proxy for GitHub Pages
-    const proxiedUrl = `${this._corsProxy}${url}`;
+    const proxiedUrl = `${this._corsProxy}${encodeURIComponent(url)}`;
 
     return this._request(proxiedUrl, { method: "GET" });
   }
